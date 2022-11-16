@@ -57,6 +57,6 @@ resource "aws_instance" "jenkins" {
     private_key = file("privatekey")
   }
   tags = {
-    "Name" = "slave01"
+    Name = "slave01"
   }
 }
