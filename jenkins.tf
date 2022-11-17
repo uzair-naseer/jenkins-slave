@@ -1,5 +1,4 @@
 provider "aws" {
-  profile = "terraform"
   region  = "ap-south-1"
 }
 resource "aws_security_group" "project_sg" {
