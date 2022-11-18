@@ -1,6 +1,3 @@
-provider "aws" {
-  region  = "ap-south-1"
-}
 resource "aws_security_group" "project_sg" {
   name        = "sec-grp"
   description = "allow htttp and ssh trafic via terraform"
