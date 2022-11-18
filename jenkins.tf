@@ -36,25 +36,8 @@ resource "aws_instance" "jenkins" {
   ami           = "ami-05c8ca4485f8b138a"
   instance_type = "t2.micro"
   key_name      = "test"
-
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo yum install -y jenkins java-11-openjdk-devel",
-      "sudo yum -y install wget",
-      "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
-      "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
-      "sudo yum upgrade -y",
-      "sudo yum install jenkins -y",
-      "sudo systemctl start jenkins",
-    ]
-  }
-  connection {
-    type        = "ssh"
-    host        = self.public_ip
-    user        = "ec2-user"
-    private_key = file("privatekey")
-  }
+  userdata      = file("userdata.sh")
+}
   tags = {
     Name = "slave01"
   }
