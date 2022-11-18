@@ -34,8 +34,8 @@ resource "aws_instance" "jenkins" {
   instance_type = "t2.micro"
   key_name      = "test"
   userdata      = file("userdata.sh")
-}
+
   tags = {
     Name = "slave01"
   }
-
+}
