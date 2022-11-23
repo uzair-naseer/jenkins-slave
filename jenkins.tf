@@ -48,7 +48,7 @@ resource "aws_instance" "jenkins" {
     type         = "ssh"
     host         = self.public_ip
     user         = "ec2-user"
-    privatekey   = file("privatekey.pem")
+    private_key  = file("privatekey.pem")
 }
   tags = {
     Name = "slave01"
