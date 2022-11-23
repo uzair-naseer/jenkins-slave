@@ -39,7 +39,7 @@ resource "aws_instance" "jenkins" {
     Name = "slave01"
   }
 }
-provisioner "remote-exec"  {
+provisioner "remote-exec" {
     inline  = [
       "sudo yum install -y jenkins java-11-openjdk-devel",
       "sudo yum -y install wget",
@@ -49,14 +49,13 @@ provisioner "remote-exec"  {
       "sudo yum install jenkins -y",
       "sudo systemctl start jenkins",
       ]
-   }
+}
 connection {
     type         = "ssh"
     host         = self.public_ip
     user         = "ec2-user"
     private_key  = "${file("/home/ec2-user/slave01/privatekey.pem")}"
-   }
+}
   tags  = {
     "Name"      = "slave01"
-      }
 }
