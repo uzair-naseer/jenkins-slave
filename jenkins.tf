@@ -30,21 +30,10 @@ resource "aws_security_group" "project_sg" {
   }
 }
 resource "aws_instance" "jenkins" {
-  ami           = "ami-05c8ca4485f8b138a"
-  instance_type = "t2.micro"
-  key_name      = "test"
-
-  tags = {
-    Name = "slave01"
-  }
-}
-connection {
-    type         = "ssh"
-    host         = self.public_ip
-    user         = "ec2-user"
-    private_key  = "${file("/home/ec2-user/slave01/privatekey.pem")}"
-}
-provisioner "remote-exec" {
+  ami             = "ami-05c8ca4485f8b138a"
+  instance_type   = "t2.micro"
+  key_name        = "test"
+    provisioner "remote-exec" {
     inline  = [
       "sudo yum install -y jenkins java-11-openjdk-devel",
       "sudo yum -y install wget",
@@ -54,4 +43,14 @@ provisioner "remote-exec" {
       "sudo yum install jenkins -y",
       "sudo systemctl start jenkins",
       ]
+}
+    connection {
+    type         = "ssh"
+    host         = self.public_ip
+    user         = "ec2-user"
+    private_key  = file("/home/ec2-user/slave01/privatekey")
+}
+  tags = {
+    Name = "slave01"
+  }
 }
