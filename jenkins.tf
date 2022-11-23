@@ -49,6 +49,7 @@ resource "aws_instance" "jenkins" {
     host         = self.public_ip
     user         = "ec2-user"
     private_key  = "${file("s3://privatekey./test.pem")}"
+    agent        = false
     }
 }
   tags = {
