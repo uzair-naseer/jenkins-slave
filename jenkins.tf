@@ -47,7 +47,6 @@ resource "aws_instance" "jenkins" {
       "sudo systemctl start jenkins",
       ]
     }
-}
     connection {
     type         = "ssh"
     host         = self.public_ip
@@ -55,3 +54,4 @@ resource "aws_instance" "jenkins" {
     agent        = false
     private_key  = file("/home/ec2-user/.ssh/id_rsa")
     }
+}
