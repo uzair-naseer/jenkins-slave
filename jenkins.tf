@@ -52,6 +52,6 @@ resource "aws_instance" "jenkins" {
     host         = self.public_ip
     user         = "ec2-user"
     agent        = false
-    private_key  = "${file("${/home/ec2-user/.ssh}/id_rsa")}"
+    private_key  = /home/ec2-user/.ssh/id_rsa
     }
 }
