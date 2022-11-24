@@ -46,6 +46,7 @@ resource "aws_instance" "jenkins" {
       "sudo yum install jenkins -y",
       "sudo systemctl start jenkins",
       ]
+    }
 }
     connection {
     type         = "ssh"
@@ -53,4 +54,4 @@ resource "aws_instance" "jenkins" {
     user         = "ec2-user"
     agent        = false
     private_key  = file("/home/ec2-user/.ssh/id_rsa")
-}
+    }
