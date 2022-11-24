@@ -28,6 +28,9 @@ resource "aws_security_group" "project_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "slave01"
+  }
 }
 resource "aws_instance" "jenkins" {
   ami             = "ami-05c8ca4485f8b138a"
@@ -51,6 +54,3 @@ resource "aws_instance" "jenkins" {
     agent        = false
     }
 }
-  tags = {
-    Name = "slave01"
-  }
